@@ -30,4 +30,6 @@ The author is Marko T. Manninen, Helsinki, Finland (math@valjastus.fi).
 
 Each check in `verify.py` tests a result as it is stated, for all small cases and not only for the examples in the text.
 
-The texts in `research/thread-*.txt` are extracted from Mathematics Stack Exchange and are licensed by their authors under CC BY-SA.
+## License
+
+The article and its notes are licensed under [CC BY 4.0](LICENSE-CC-BY-4.0.txt), and the code under the MIT License. `paper/amsplain-full.bst` remains under the LaTeX Project Public License, and the texts in `research/thread-*.txt`, extracted from Mathematics Stack Exchange, remain under CC BY-SA as licensed by their authors. The details are in [LICENSE](LICENSE).

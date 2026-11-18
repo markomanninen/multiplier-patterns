@@ -1,0 +1,608 @@
+TITLE: Doubling sequences of the cyclic decimal parts of the fraction numbers
+
+===== QUESTION  score 5
+SIG: edited Mar 6, 2023 at 18:01 Glorfindel 4,035 10 10 gold badges 30 30 silver badges 38 38 bronze badges
+SIG: asked Jul 18, 2015 at 12:19 MarkokraM 691 2 2 gold badges 10 10 silver badges 19 19 bronze badges
+
+
+Is there any theory, why and when doubling sequences of the decimal part of the fraction numbers occur? Take for example these small numbers:
+
+
+1/7 = 0.[142857]
+1/19 = 0.[052631578947368421]
+1/49 = 0.[020408163265306122448979591836734693877551]
+
+
+
+where sequence inside [] is the repeating/cycling part.
+
+
+For 1/7
+ we can see that doubling is started with 14, following with 28, 56, 112, 224,... when numbers bigger than 2 digits additively carry front part of the digit to the previous number. On the other hand calculation can be done:
+
+
+$(2^1 7)/10^2+(2^2 7)/10^4+(2^3 7)/10^6+(2^4 7)/10^8+...$
+
+
+Or complete with summation function:
+
+
+$$\sum_{n=1}^{\infty} \frac{2^n\cdot 7}{10^{2n}}=1/7$$
+
+
+For 1/49
+ we find repeating part 
+$[020408163265306122448979591836734693877551]$
+ again being a doubling series: 
+$02, 04, 08, 16, 32, 64, 124, 256, \ldots$
+ whose summation function ends up being somewhat simpler:
+
+
+$$\sum_{n=1}^{\infty} \frac{2^n}{10^{2n}}=1/49$$
+
+
+For 1/19
+ doubling can be seen in reverse order starting from the end of the sequence: 
+$1, 2, 4, 8, 16, 32, 64, 128, \ldots$
+
+
+I can't find summation function for this however. Calculation of the digits clearly comes from the summation of this sequence:
+
+
+$$2^0/10^{18} + 2^1/10^{17} + 2^2/10^{16} + 2^3/10^{15} + 2^4/10^{14} + 2^5/10^{13} + 2^6/10^{12} + 2^7/10^{11} + 2^8/10^{10} + 2^9/10^9 + 2^{10}/10^8 + 2^{11}/10^7 + 2^{12}/10^6 + 2^{13}/10^5 + 2^{14}/10^4 + 2^{15}/10^3 + 2^{16}/10^2 + 2^{17}/10^1 + 2^{18}/10^0 + ...$$
+
+
+which results: 275941.052631578947368421. If we go further adding fractions of 10^-1, 10^-2,... and so on, repeating pattern will be visible on whole number part of the number. My secondary wonder is, if there is a summation function for 1/19?
+
+
+Primary question is why and when does this kind of forward or reverse doubling sequence occur on recurring decimal expansion?
+
+
+I have read these materials but doubling sequential behavior of the cyclic numbers are not really discussed on them:
+
+
+http://thestarman.pcministry.com/math/rec/RepeatDec.htm
+
+
+https://www.quora.com/Why-does-the-number-142857-have-such-interesting-properties
+
+
+Link
+
+
+http://en.wikipedia.org/wiki/Cyclic_number
+
+
+http://en.wikipedia.org/wiki/Recurring_decimal
+
+
+http://www.researchgate.net/publication/259735461_An_Unanticipated_Decimal_Expansion
+
+
+Examples table
+
+
+G   SL  SDS SF              S
+-----------------------------
+7   6   27  14*2            142857
+19  18  81  05^n and 2^n reverse (also 12*4 reverse)            052631578947368421
+47  46  207 02 * 6          0212765957446808510638297872340425531914893617
+49  42  189 02^n            020408163265306122448979591836734693877551
+71  35  126 014 * 6         01408450704225352112676056338028169
+79  13  54  1*8 reverse     126582278481
+83  41  171 012 * 4         01204819277108433734939759036144578313253
+89  44  198 fibonacci       01123595505617977528089887640449438202247191
+97  96  432 03^n            010309278350515463917525773195876288659793814432989690721649484536082474226804123711340206185567
+109 108 486 fibonacci reverse?          009174311926605504587155963302752293577981651376146788990825688073394495412844036697247706422018348623853211
+199 99  405 005^n and 02^n reverse          005025125628140703517587939698492462311557788944723618090452261306532663316582914572864321608040201
+
+
+
+G = Generator
+SL = Sequence length
+SDS = Sequence digit sum
+SF = Summation function
+S = Sequence
+
+
+COMMENT: I think I found the rule for increments of the summation, that fits to all cases at OT: SUM[((10^x)-n)^(n-1)/(10^x)^n, {n, 1, Infinity}] = 1/((10^x)*n), n=49, x=2 => 1/49 = 0.[020408163265306122448979591836734693877551]
+COMMENT: The "forward" doubling for 1 / 7 1 / 7 and 1 / 49 1 / 49 occurs because 100 100 leaves remainder 2 2 when divided by 7 7 and 49 49 ; i.e., 7 7 and 49 49 divide 100 − 2 = 98 100 − 2 = 98
+
+===== ANSWER 1375035 score 5
+SIG: edited Apr 13, 2017 at 12:21 Community Bot 1
+SIG: answered Jul 27, 2015 at 0:15 David K 118k 11 11 gold badges 97 97 silver badges 273 273 bronze badges
+
+
+As your research shows, most discussion of repeating decimals focuses
+on the simple repeating block of digits in the decimal expansion.
+There is some interest in "cycling" numbers, but those are really just
+the same repeating block starting at a different point:
+
+
+$$\begin{align}
+1/7 &= 0.\overline{142857} \\
+&= 0.142857\overline{142857} \\
+&= 0.14\overline{285714}.
+\end{align}$$
+
+
+The simple repeating block of 
+$1/7$
+ is easily seen if you try to compute
+
+$1/7$
+ by long division:
+
+
+$$\require{enclose}
+\begin{array}{rll}
+                    0.142857  \\[-3pt]
+7 \enclose{longdiv}{1.000000} \\[-3pt]
+           \underline{7}\phantom{00000} \\[-3pt]
+                      30\phantom{0000}  \\[-3pt]
+           \underline{28}\phantom{0000} \\[-3pt]
+                       20\phantom{000}  \\[-3pt]
+            \underline{14}\phantom{000} \\[-3pt]
+                        60\phantom{00}  \\[-3pt]
+             \underline{56}\phantom{00} \\[-3pt]
+                         40\phantom{0}  \\[-3pt]
+              \underline{35}\phantom{0} \\[-3pt]
+                          50  \\[-3pt]
+               \underline{49} \\[-3pt]
+                           1
+\end{array}
+$$
+
+
+Once you find a remainder of 
+$1$
+ after one of the subtraction steps,
+you know the pattern will repeat. 
+(In general, for 
+$1/n$
+, you don't necessarily ever find a remainder of 
+$1$
+; 
+but as soon as you see 
+any
+ remainder that you have seen before, 
+you have found a repeating pattern. 
+For example, 
+$1/6$
+ has the repeating remainder 
+$4$
+.)
+
+
+But long division also reveals shorter patterns that "repeat" in the
+form of geometric series:
+
+
+$$\begin{array}{rll}
+                    0.14  \\[-3pt]
+7 \enclose{longdiv}{1.00} \\[-3pt]
+           \underline{7}\phantom{0} \\[-3pt]
+                      30\\[-3pt]
+           \underline{28} \\[-3pt]
+                       2  \\[-3pt]
+\end{array}$$
+
+
+The remainder of 
+$2$
+ indicates that the rest of the digits of 
+$1/7$
+
+will just be the digits of 
+$2/7$
+ shifted two places to the right;
+and the digits that occur there will just be the result of doubling
+all the digits of 
+$1/7$
+. In more algebraic notation, what happens is
+
+
+$$\begin{align}
+1 &= 7 \times 0.14 + 0.02 \\
+  &= 7 \times 0.14 + 0.02(7 \times 0.14 + 0.02) \\
+  &= 7 \times 0.14 + 0.02(7 \times 0.14 + 0.02(7 \times 0.14 + 0.02)) \\
+  &= 7 \times 0.14 + 0.02(7 \times 0.14 +
+                          0.02(7 \times 0.14 + 0.02(7 \times 0.14 + 0.02))).
+\end{align}$$
+
+
+If we rewrite these same equations with all the multiplications fully
+distributed over the terms in parentheses, the result is
+
+
+$$\begin{align}
+1 &= 7 \times 0.14 + 0.02 \\
+  &= 7 \times 0.14 + 7 \times 0.02 \times 0.14 + 0.02^2 \\
+  &= 7 \times 0.14 + 7 \times 0.02 \times 0.14
+                   + 7 \times 0.02^2  \times 0.14 + 0.02^3 \\
+  &= 7 \times 0.14 + 7 \times 0.02 \times 0.14
+                   + 7 \times 0.02^2 \times 0.14
+                   + 7 \times 0.02^3 \times 0.14 + 0.02^4.
+\end{align}$$
+
+
+As we continue writing equations in this pattern, we generate the terms
+of the infinite geometric series
+
+
+$$ \sum_{k=0}^\infty 7 \times 0.14 \times 0.02^k. $$
+
+
+The method by which we develop this series suggests intuitively
+that the limit of the sum as the number of terms goes to infinity is 
+$1$
+,
+but we can also use the known formula for the sum of a geometric series,
+
+$ \sum_{k=0}^\infty r^k = \frac{1}{1 - r}$
+, to prove it:
+
+
+$$ \sum_{k=0}^\infty 7 \times 0.14 \times 0.02^k
+ = 7 \times 0.14 \times \sum_{k=0}^\infty 0.02^k
+ = 0.98 \times \left( \frac{1}{1 - 0.02} \right) = 1. $$
+
+
+So we have
+
+
+$$\begin{align}
+ \frac17 = \frac17 \times 1
+  &= \frac17 \sum_{k=0}^\infty 7 \times 0.14 \times 0.02^k \\
+  &= \sum_{k=0}^\infty \frac{14}{100} \times \left( \frac{2}{100} \right)^k \\
+  &= \sum_{k=0}^\infty \frac{14 \times 2^k}{100^{k+1}} .
+\end{align}$$
+
+
+The factor of 
+$2^k$
+ in each term of the sum produces the doubling phenomenon:
+
+
+$$\begin{align}
+1/7 = & \phantom{+0} 0.14 \\
+      & + 0.0028 \\
+      & + 0.000056 \\
+      & + 0.00000112 \\
+      & + 0.0000000224 \\
+      & + \cdots .
+\end{align}$$
+
+
+Of course, unlike the simple repeating block 
+$142857$
+, after a few iterations
+these doubling blocks of digits start to "overlap", meaning you actually have
+to add them together rather than simply concatenating them.
+You already knew that, of course, but I think it's important to emphasize that
+these sequences and the simple repeating sequences come to the same
+answer in 
+different ways
+.
+
+
+Notice also that 
+$0.02^3 = 8 \times 10^{-6}$
+.
+This would correspond a remainder of 
+$8$
+ at the end of a step of long-division,
+which we do not allow when dividing by 
+$7$
+.
+In effect, the long division algorithm uses the fact that
+
+$$7 \times 0.02^2  \times 0.14 + 0.02^3 
+= 7 \times 0.000056 + 0.000008
+= 7 \times 0.000057 + 0.000001$$
+
+to stop the "doubling" effect and start from 
+$1$
+ again.
+
+
+You can also get a tripling effect in 
+$1/7$
+ from the first step of the
+long division,
+
+
+$$\begin{array}{rll}
+                    0.1  \\[-3pt]
+7 \enclose{longdiv}{1.0} \\[-3pt]
+           \underline{7} \\[-3pt]
+                      3
+\end{array}$$
+
+
+This corresponds to the equation
+
+
+$$ 1 = 7 \times 0.1 + 0.3, $$
+
+
+which can be further expanded to 
+$7 \times 0.1 + 0.3(7 \times 0.1 + 0.3)$
+,
+
+$7 \times 0.1 + 0.3(7 \times 0.1 + 0.3(7 \times 0.1 + 0.3))$
+,
+and so forth, which generates the series
+
+
+$$\sum_{k=0}^\infty \frac{3^k}{10^{k+1}}
+ = 0.1 + 0.03 + 0.009 + 0.0027 + 0.0081 + \cdots.$$
+
+
+So long division is one way to discover a doubling or tripling pattern applied
+to some digits (often many fewer digits than the simple repeated block contains), and there can be more than one such pattern that can
+be discovered this way.
+
+
+
+
+The last example (the tripling pattern of 
+$1/7$
+)
+is an example of the infinite sum
+
+$\sum_{k=1}^{\infty} \frac{\left(10^x - n\right)^{k-1}}{\left(10^x\right)^k}$
+
+which you mentioned in a comment, with 
+$n=7$
+ and 
+$x=1$
+.
+This works as a representation of the fraction 
+$1/n$
+ because
+the sum is a geometric series, and
+
+
+$$\sum_{k=1}^{\infty} \frac{\left(10^x - n\right)^{k-1}}{\left(10^x\right)^k}
+  = \frac 1n.$$
+
+
+(This was shown in 
+https://math.stackexchange.com/a/1372077/139123
+ using
+a generalization of this formula, with 
+$N$
+ instead of 
+$10^x$
+ 
+and 
+$p$
+ instead of 
+$n$
+.)
+
+
+Let's generalize this formula in a slightly different way:
+
+
+$$\sum_{k=0}^{\infty}
+   \frac{m\left(10^x - mn\right)^k}{\left(10^x\right)^{k+1}}.$$
+
+
+Notice that this starts 
+$k$
+ at 
+$0$
+ instead of 
+$1$
+ without changing
+any of the terms of the series.
+We can evaluate this as follows:
+
+
+$$\begin{align}
+\sum_{k=0}^{\infty}
+     \frac{m\left(10^x - mn\right)^k}{\left(10^x\right)^{k+1}} 
+& = \frac m{10^x} \sum_{k=0}^{\infty} \left(1 - \frac{mn}{10^x}\right)^k
+\tag{A} \\
+& = \frac m{10^x} \left(\frac{1}{1 - \left(1 - \frac{mn}{10^x}\right)}\right)
+\tag{B} \\
+& = \frac m{10^x} \left(\frac{10^x}{mn}\right)\\
+& = \frac 1n.
+\end{align}$$
+
+
+Once again, we use the formula for the sum of an infinite 
+geometric series to get from step (A) to step (B).
+
+
+This gives you a lot of flexibility in setting up geometric series to
+find doubling, tripling, or other 
+$N$
+-tupling digit sequences in a
+repeating decimal fraction.
+For example, setting 
+$n = 7$
+, 
+$m=14$
+, 
+$x=2$
+,
+
+
+$$
+\frac 17
+= \sum_{k=0}^{\infty} \frac{m\left(10^x - mn\right)^k}{\left(10^x\right)^{k+1}} 
+= \sum_{k=0}^{\infty}
+   \frac{14\left(10^2 - 14\times7\right)^k}{\left(10^2\right)^{k+1}} 
+= \sum_{k=0}^{\infty}
+   \frac{14 \times 2^k}{100^{k+1}} 
+$$
+
+just as we found before.
+Other examples are:
+
+
+$$\begin{array}{rrrcl}
+n & m & x && \qquad\text{decimal expansion} \\ \hline
+19 & 5 & 2 &&
+\displaystyle{\frac{1}{19}
+ = \sum_{k=0}^{\infty} \frac{5 \times 5^k}{100^{k+1}}}
+ = 0.05 + 0.0025 + 0.000125 + \cdots \\
+47 & 2 & 2 &&
+\displaystyle{\frac{1}{47}
+ = \sum_{k=0}^{\infty} \frac{2 \times 6^k}{100^{k+1}}}
+ = 0.02 + 0.0012 + 0.000072 + \cdots \\
+49 & 2 & 2 &&
+\displaystyle{\frac{1}{47}
+ = \sum_{k=0}^{\infty} \frac{2 \times 2^k}{100^{k+1}}}
+ = 0.02 + 0.0004 + 0.000008 + \cdots \\
+71 & 14 & 3 &&
+\displaystyle{\frac{1}{49}
+ = \sum_{k=0}^{\infty} \frac{14 \times 6^k}{1000^{k+1}}}
+ = 0.014 + 0.000084 + 0.000000504 + \cdots \\
+83 & 12 & 3 &&
+\displaystyle{\frac{1}{49}
+ = \sum_{k=0}^{\infty} \frac{12 \times 4^k}{1000^{k+1}}}
+ = 0.012 + 0.000048 + 0.000000192 + \cdots \\
+97 & 1 & 2 &&
+\displaystyle{\frac{1}{97}
+ = \sum_{k=0}^{\infty} \frac{1 \times 3^k}{100^{k+1}}}
+ = 0.01 + 0.0003 + 0.000009 + \cdots \\
+199 & 5 & 3 &&
+\displaystyle{\frac{1}{199}
+ = \sum_{k=0}^{\infty} \frac{5 \times 5^k}{1000^{k+1}}}
+ = 0.005 + 0.000025 + 0.000000125 + \cdots 
+\end{array}$$
+
+
+There is a doubling pattern when the summation has 
+$2^k$
+ in the numerator,
+tripling when the summation has 
+$3^k$
+ in the numerator, etc.
+
+
+The procedure for generating these examples was simply: given 
+$n$
+,
+choose 
+$x$
+ and set 
+$m = \left\lfloor \frac{10^x}{n} \right\rfloor$
+.
+Whether the result is an "interesting" pattern depends partly on how
+hard you want to look at the digits of the decimal fraction;
+for example, with 
+$1/7$
+ there is 
+a pattern with 
+$x=1$
+, 
+$m=1$
+ (powers of 
+$10-7 = 3$
+),
+a pattern with 
+$x=3$
+, 
+$m=142$
+ (powers of 
+$1000-7\times142= 6)$
+,
+and even patterns with 
+$x=4$
+ and 
+$x=5$
+, but the easiest pattern to see
+(in my opinion) is for 
+$x=2$
+ (powers of 
+$2$
+).
+The effect is enhanced when 
+$10^x - mn$
+ is small.
+It also seems desirable for 
+$x$
+ to be a fraction of the period of the repeating decimal, and not very large.
+You can find 
+$10^x - mn$
+ for as many values of 
+$x$
+ as you wish
+by starting with 
+$x=0$
+ (in which case 
+$10^x - mn = 1$
+),
+and for each successive value of 
+$x$
+ (
+$x = 1,2,3,\ldots$
+),
+multiply the previous result by 
+$10$
+ and find the remainder
+when you divide by 
+$n$
+.
+
+
+It does not seem simple to predict which 
+$n$
+ will have small enough values 
+of 
+$10^x - mn$
+ for small enough values of 
+$x$
+ 
+without going through this exercise (even setting aside the fact that 
+"small enough" is a subjective measurement here).
+But by setting this up in a spreadsheet I found some additional
+"interesting" patterns for 
+$n < 200$
+:
+
+
+$$
+\frac{1}{17} = \sum_{k=0}^{\infty} \frac{588 \times 4^k}{10000^{k+1}},
+\quad
+\frac{1}{43} = \sum_{k=0}^{\infty} \frac{232558 \times 6^k}{10000000^{k+1}},
+\quad
+\frac{1}{51} = \sum_{k=0}^{\infty} \frac{196 \times 4^k}{10000^{k+1}},
+$$
+
+
+$$
+\frac{1}{119} = \sum_{k=0}^{\infty} \frac{84 \times 4^k}{10000^{k+1}},
+\quad
+\frac{1}{127} = \sum_{k=0}^{\infty} \frac{7874 \times 2^k}{1000000^{k+1}},
+\quad
+\frac{1}{167} = \sum_{k=0}^{\infty} \frac{5988 \times 4^k}{1000000^{k+1}}.
+$$
+
+
+And of these, I would not consider 
+$1/17$
+ or 
+$1/43$
+ to be "easy" to see
+even after you know what to look for.
+
+
+COMMENT: Could we summarize at the end something like doubling is consequence of the n power 2 multifier on the equation? Any simole rule or notation to show when it happen? Just to conclude original question. Btw. 1/98 × 2 = 1/49 and 1/49 × 7 = 1/7. So 2×7 the beginning of the sequence is seen here as well.
+COMMENT: Yes, it's the power of 2 that causes the doubling (and I have added a word about that). I also gave a trial-and-error method for finding patterns like this, and used it to find another doubling pattern, some quadrupling patterns, and a 6-times pattern.
+COMMENT: Very throughout answer to the doubling and n-tupling phenomenon. I hope other people interested of the topic will be satisfied with it now. I learned a lot! I also made small corrections to few numbers there which were probably copy and paste typos.
+COMMENT: @DavidK It was a pleasure to read your answer. I was wondering whether the same method that you described could be used to explain how the decimal expansion of 1 / 19 1 / 19 can be written as a sequence of doublings in reverse ? The OP had also asked this question as a secondary problem.
+COMMENT: @BrahadeeshS. The answer shows a series for 1 / 19 1 / 19 in powers of 5 / 100 5 / 100 . The obvious connection to the "backward doubling" is that 5 / 100 = 1 / 20 5 / 100 = 1 / 20 , so if we start somewhere in the middle of the series we can compute all earlier terms by repeatedly multiplying by 20 20 --that is, move one place to the left ("backward") and multiply by 2 2 ("double"). But this is not the whole story, because the "starting point" for generating a series in this way is not as clear as it is when we double or triple from left to right. I'll give some thought to what can be said about that in not too many words.
+
+===== ANSWER 5024760 score 0
+SIG: answered Jan 18, 2025 at 16:00 Divisionremnant 11 1 1 bronze badge
+
+
+Good attempt at explaining. But the numbers in base 10 have scales of magnitude. This is important because it sets ranges of the inverse number repeats. Every number repeats is grown from the upper boundary of the range and works downwards in value. Every inverse number sequence can be grown using this knowledge but I have not yet seen anyone disclose the simple growing formula. Could it be that nobody else knows how to grow inverse number sequences?
+
+

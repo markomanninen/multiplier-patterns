@@ -1,0 +1,289 @@
+TITLE: Four mathematical notations for fraction1/9991/999and how to show/present they are equal
+
+===== QUESTION  score 0
+SIG: edited Jul 23, 2015 at 19:32
+SIG: asked Jul 23, 2015 at 14:56 MarkokraM 691 2 2 gold badges 10 10 silver badges 19 19 bronze badges
+
+
+I need some help for notation. I need to present fractions in four different format and I'd like to get it right. I just take 
+$1/999$
+ for example, but of course it could be any fraction with positive integer denominator. So far my notation looks like this, leaving few parts undecided and unclear:
+
+
+a)
+
+
+$$1/999 = 0.001001001... = 0.\overline{001}$$
+
+
+b)
+
+
+$$.001 + .000001 + .000000001 + ...$$
+
+
+How do you denote sequence like this up to infinity?
+
+
+c) 
+
+
+$$1*10^{-(3*(n+0))} + 1*10^{-(3*(n+1))} + 1*10^{-(3*(n+2))} + ...$$
+
+
+Again I don't know how to denote continuity and increment of the power 
+$3n$
+.
+
+
+d)
+
+
+$$\sum_{k=1}^{\infty} \frac{(10^{\lfloor\strut\log_{10}(p)\rfloor+1} - p)^{k-1}}{(10^{\lfloor\strut\log_{10}(p)\rfloor+1})^k}$$
+
+
+where 
+$p = 999$
+
+
+Summation part is pretty much ok, except i don't know how to incorporate p = 999 part on it and ow to tie everything together.
+
+
+After all, my purpose is to show that 
+$a = b = c = d$
+ which context is why I prefer to ask them on one question rather than all on different questions.
+
+
+COMMENT: You mean 0.\overline{001} in the (a) part?
+COMMENT: Yes, exactly. I wish there was an easy reading and searchable guide for notation. But now I can read from source.
+COMMENT: Something like this ?
+COMMENT: Find the limit to show that all four limits are the same number.
+COMMENT: @Syuizen can you show me, what do you mean with finding limits for parts a,b,c,d?
+
+===== ANSWER 1372077 score 1
+SIG: edited Apr 13, 2017 at 12:19 Community Bot 1
+SIG: answered Jul 24, 2015 at 3:21 David K 118k 11 11 gold badges 97 97 silver badges 273 273 bronze badges
+
+
+a) 
+$1/999 = 0.001001001\ldots = 0.\overline{001}$
+
+
+Either of these is fairly standard notation. The overline 
+format 
+$0.\overline{001}$
+ is a little more explicit, 
+so I think it would be preferred.
+
+
+b) 
+$.001 + .000001 + .000000001 + \cdots$
+
+
+This denotes an infinite sequence in the way that
+
+$1, 2, 3, \ldots$
+ indicates an infinite sequence: 
+a little informally, but I think it is recognizable as a
+mathematical notation.
+
+
+The main problem with this one is it is hard to count the zeros.
+One way to help see how big each number is is to consider a power of
+
+$0.001$
+, like this:
+
+
+$$0.001^1 + 0.001^2 + 0.001^3 + \cdots.$$
+
+
+Using the 
+$\sum$
+ summation notation, this is
+
+
+$$\sum_{k=1}^\infty 0.001^k.$$
+
+
+Alternatively, you could write this as
+
+
+$$10^{-3} + 10^{-6} + 10^{-9} + \cdots$$
+
+
+but now it is starting to look like
+
+
+c) 
+$1 \cdot 10^{-(3 \cdot (n+0))} + 1 \cdot 10^{-(3 \cdot (n+1))}
+    + 1 \cdot 10^{-(3 \cdot (n+2))} + \cdots$
+
+
+But there's a problem here: what is 
+$n$
+? If you set 
+$n=1$
+ then this evaluates
+to  
+$10^{-3 \cdot 1} + 10^{-3 \cdot 2} + 10^{-3 \cdot 3} + \cdots$
+
+which is OK. If you set 
+$n$
+ to any other value then the sum will
+
+not
+ add up to 
+$1/999$
+.
+
+
+In 
+$\sum$
+ notation, this series is
+
+
+$$\sum_{k=0}^{\infty} 10^{-3 \cdot (n + k)}$$
+
+
+and we can rewrite it as follows:
+
+
+$$\sum_{k=0}^{\infty} 10^{-3 \cdot (n + k)}
+ = 10^{-3n} \sum_{k=0}^{\infty} \left( 10^{-3} \right)^k
+ = 10^{-3n} \left( 1 + 0.001 + 0.000001 + \cdots \right).
+$$
+
+
+d) 
+$\displaystyle\sum_{k=1}^{\infty} \frac{(10^{\lfloor\strut\log_{10}(p)\rfloor+1} - p)^{k-1}}{(10^{\lfloor\strut\log_{10}(p)\rfloor+1})^k}$
+
+
+This looks really complicated, but
+let's try setting 
+$N = 10^{\lfloor\strut\log_{10}(p)\rfloor+1}$
+.
+Then
+
+
+$$\begin{align}
+\sum_{k=1}^{\infty} \frac{(10^{\lfloor\strut\log_{10}(p)\rfloor+1} - p)^{k-1}}{(10^{\lfloor\strut\log_{10}(p)\rfloor+1})^k} 
+& = \sum_{k=1}^{\infty} \frac{(N - p)^{k-1}}{N^k} \\
+& = \sum_{k=0}^{\infty} \frac{(N - p)^k}{N^{k+1}} \\
+& = \frac 1N \sum_{k=0}^{\infty} \left(1 - \frac pN\right)^k \\
+\end{align}$$
+
+
+The sum in this last equation is a 
+geometric series
+ 
+$\sum r^k$
+
+with ratio 
+$r = \left(1 - \frac pN\right)$
+.
+The limit of such a series starting from the 
+$k=0$
+ term
+is 
+$\sum_{k=0}^{\infty} r^k = \frac{1}{1-r}$
+.
+Applying this result, we have
+
+
+$$\sum_{k=0}^{\infty} \left(1 - \frac pN\right)^k
+= \frac{1}{1 - \left(1 - \frac pN\right)}$$
+
+
+and therefore
+
+
+$$\begin{align}
+\sum_{k=1}^{\infty} \frac{(10^{\lfloor\strut\log_{10}(p)\rfloor+1} - p)^{k-1}}{(10^{\lfloor\strut\log_{10}(p)\rfloor+1})^k} 
+& = \frac 1N \left(\frac{1}{1 - \left(1 - \frac pN\right)}\right) \\
+& = \frac 1N \left(\frac Np\right) \\
+& = \frac 1p.
+\end{align}$$
+
+
+So it turns out it doesn't make much difference what 
+$N$
+ is.
+
+
+Edit:
+ the rest of this answer has been revised to reflect upon
+the related question, 
+Doubling sequences of the cyclic decimal parts of the fraction numbers
+.
+
+
+Now, it turns out that in the case where 
+$p = 999$
+,
+the series in part d) is term-for-term the same as the series in part b),
+because 
+$10^{\lfloor\strut\log_{10}(999)\rfloor+1} - 999 = 1$
+.
+The sum then comes down to
+
+
+$$\sum_{k=1}^{\infty}
+     \frac{1^{k-1}}{(10^{\lfloor\strut\log_{10}(999)\rfloor+1})^k}
+ = \sum_{k=1}^{\infty} \frac{1}{1000^k}
+ = \sum_{k=1}^{\infty} 0.001^k$$
+
+
+which is a more explicit way of writing the series
+
+$0.001^1 + 0.001^2 + 0.001^3 + \cdots$
+.
+
+
+But as the calculations above showed,
+the formula for part d) works even when 
+$p$
+ is not all 
+$9$
+s
+(that is, even when 
+$p \neq 16^n - 1$
+ for any integer 
+$n$
+).
+For example, take 
+$p = 98$
+.
+The formula then says
+
+
+$$\frac{1}{98}
+ = \sum_{k=1}^{\infty} \frac{(100 - 98)^{k - 1}}{100^k}
+ = \sum_{k=1}^{\infty} \frac{2^{k-1}}{100^k}
+ = 0.01 + 0.0002 + 0.000004 + 0.00000008 + \cdots$$
+
+
+which well illustrates the "powers of 
+$2$
+" pattern within the
+repeating 
+$42$
+-digit sequence in
+
+
+$$\frac{1}{98} = 0.0\overline{102040816326530612244897959183673469387755}.$$
+
+
+More could be said along these lines, but the question
+
+Doubling sequences of the cyclic decimal parts of the fraction numbers
+
+is a better context for that.
+
+
+COMMENT: Do you have time for a little chat about your answer? I remember on some SE site it was possible to have a conversation screen, but I can't see it here...
+COMMENT: hope you have time to read and comment at least the last part of this: stackedit.io/…
+COMMENT: @MarkokraM  There's a "chat" button at the bottom of this Web page that enables creating a new room. I did this for chat.stackexchange.com/rooms/26191/… . (The stackedit link did not seem to work for me.)
+COMMENT: I will add it. Is it possible to show by which principle you get sigma sign out of the equation on part d?
+COMMENT: I have changed how this answer ends, now that I know what the reason for part d) is. I think this is about as much as we need to say about the notational question. Of course there is a lot more to say about the "doubling sequences" question that inspired this one, and I will try to post some kind of answer to that question too. (It may just take a little while longer to do that.)
+COMMENT: Brilliant, that is more than enough for OP. I'm looking forward answer for other wider "doubling sequences" topic. At first I didn't want to mix it with the current one, but true, that is what I'm after.

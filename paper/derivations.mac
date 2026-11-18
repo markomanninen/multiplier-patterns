@@ -1,0 +1,63 @@
+/* derivations.mac -- symbolic derivations for "Forward and backward
+   multiplier patterns in repeating decimals".
+
+   Run:  maxima -b derivations.mac
+   Each check prints true. Formulas are also printed as TeX with tex().
+*/
+
+load("simplify_sum")$
+assume(X > 0, r >= 0, X - r > 0, Y > 1, K > 0)$
+declare(K, integer)$
+display2d : false$
+
+print("== Lemma 1 (self-similarity): 10^x = m n + r  =>  1/n = m/10^x + (r/10^x)(1/n)")$
+lemma1 : ratsimp(m/X + (r/X)*(1/n) - 1/n), X = m*n + r;
+print("check:", is(equal(ev(lemma1), 0)))$
+
+print("== Theorem 1 (forward series): sum m r^k / X^(k+1) = m/(X - r) = 1/n")$
+fwd : simplify_sum(sum(m*(r/X)^k, k, 0, inf)/X);
+print("simplify_sum ->", ratsimp(fwd))$
+/* simplify_sum may ask about convergence; assume |r| < X */
+fwd_closed : m/(X - r)$
+print("closed form m/(X-r) with X = m n + r gives:", ratsimp(fwd_closed, X), "->",
+      ratsimp(subst(X = m*n + r, fwd_closed)))$
+tex(sum(m*r^k/(10^x)^(k+1), k, 0, inf) = 1/n)$
+
+print("== Theorem 2 (backward, finite sum identity)")$
+/* (Y - 1) * sum_{k<K} Y^k = Y^K - 1, with Y = 10^x c and Y - 1 = b n */
+S : sum(Y^k, k, 0, K-1)$
+S_closed : simplify_sum(S);
+print("check (Y-1) S = Y^K - 1:", is(equal(ratsimp((Y-1)*S_closed), Y^K - 1)))$
+
+print("== Corollary (10-adic): sum (10^x c)^k = 1/(1 - 10^x c) = -1/(b n)")$
+print(ratsimp(1/(1 - Y)), " with Y = b n + 1 ->", ratsimp(subst(Y = b*n + 1, 1/(1 - Y))))$
+
+print("== Fibonacci generating function")$
+G : X/(1 - X - X^2)$
+print("series:", taylor(G, X, 0, 12))$
+print("G(1/10)/10 =", ratsimp(subst(X = 1/10, G)/10), "   (expect 1/89)")$
+print("G(10)/10   =", ratsimp(subst(X = 10, G)/10),   "   (expect -1/109)")$
+print("Powers of 2: 1/(1-2X) at X=1/100, times 1/100 =", ratsimp(subst(X = 1/100, 1/(1 - 2*X))/100))$
+print("Naturals: X/(1-X)^2 at X=1/100 =", ratsimp(subst(X = 1/100, X/(1 - X)^2)), "  at X=1/1000 =",
+      ratsimp(subst(X = 1/1000, X/(1 - X)^2)))$
+print("Tribonacci X/(1-X-X^2-X^3) at X=1/10 =", ratsimp(subst(X = 1/10, X/(1 - X - X^2 - X^3))))$
+
+print("== Number theory table: n, L = ord_n(10), x, m, r (forward), b, c (backward)")$
+row(n, x) := block([X : 10^x, m, r, c, b],
+  m : floor(X/n), r : X - m*n,
+  c : inv_mod(X, n), b : (X*c - 1)/n,
+  [n, zn_order(10, n), x, m, r, b, c, is(equal(mod(r*c, n), 1))])$
+for t in [[7,2],[19,1],[19,2],[47,2],[49,2],[71,3],[79,1],[83,3],[89,1],[97,2],[109,1],[199,2],[199,3]] do
+  print(apply(row, t))$
+
+print("== Duality r c = 1 (mod n) for all n < 1000 coprime to 10 and x <= 4")$
+dual_ok : true$
+for n : 3 thru 999 do
+  if gcd(n, 10) = 1 then
+    for x : 1 thru 4 do
+      if mod(mod(10^x, n) * inv_mod(10^x, n), n) # 1 then dual_ok : false$
+print("duality holds:", dual_ok)$
+
+print("== Which n give forward doubling (n | 10^x - 2) and backward doubling (n | 2 10^x - 1)")$
+for x : 1 thru 6 do
+  print("x =", x, " 10^x-2 =", ifactors(10^x - 2), "   2*10^x-1 =", ifactors(2*10^x - 1))$

@@ -32,4 +32,9 @@ Each check in `verify.py` tests a result as it is stated, for all small cases an
 
 ## License
 
-The article and its notes are licensed under [CC BY 4.0](LICENSE-CC-BY-4.0.txt), and the code under the MIT License. `paper/amsplain-full.bst` remains under the LaTeX Project Public License, and the texts in `research/thread-*.txt`, extracted from Mathematics Stack Exchange, remain under CC BY-SA as licensed by their authors. The details are in [LICENSE](LICENSE).
+| Material | License |
+| --- | --- |
+| The article and its notes, `paper/main.tex`, `paper/refs.bib`, `paper/fig-additions.tex`, `research/README.md` and `research/doubling-sequences-article.md` | [CC BY 4.0](LICENSE-CC-BY-4.0.txt) |
+| The code, `research/verify.py`, `scripts/check.sh`, `paper/make_fig.py` and `paper/derivations.mac` | [MIT](LICENSE) |
+| `paper/amsplain-full.bst`, a modified copy of the American Mathematical Society's `amsplain.bst` | LaTeX Project Public License 1.3c |
+| `research/thread-*.txt`, extracted from Mathematics Stack Exchange | CC BY-SA, as licensed by their authors |

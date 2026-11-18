@@ -1,13 +1,4 @@
-This repository contains material under three licenses.
-
-The article and its notes (paper/main.tex, paper/refs.bib,
-paper/fig-additions.tex, research/README.md and
-research/doubling-sequences-article.md) are licensed under the Creative
-Commons Attribution 4.0 International License (CC BY 4.0). The full text is
-in LICENSE-CC-BY-4.0.txt and at https://creativecommons.org/licenses/by/4.0/.
-
-The code (research/verify.py, scripts/check.sh, paper/make_fig.py and
-paper/derivations.mac) is licensed under the MIT License below.
+MIT License below.
 
 paper/amsplain-full.bst is a modified copy of amsplain.bst by the American
 Mathematical Society and remains under the LaTeX Project Public License 1.3c.

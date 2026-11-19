@@ -30,6 +30,13 @@ The author is Marko T. Manninen, Helsinki, Finland (math@valjastus.fi).
 
 Each check in `verify.py` tests a result as it is stated, for all small cases and not only for the examples in the text.
 
+## Version history
+
+| Version | Date | Changes |
+| --- | --- | --- |
+| 1.0 | 19 November 2026 | First published version |
+| 1.1 | 19 November 2026 | The parasitic proposition requires $k < n$, and its digits are the period of $k/n$ repeated only when that period is shorter than $L$. The last block $b$ is the last $x$ digits of the period only for $x \le L$. The direct proof of the congruence states the condition $xK \ge L$ and its conclusion. The doubling paragraph and the remark on multipliers name the hypothesis $n < 10^x$. The forward doubling list includes $x = 5$. The proof of Proposition 4 shows $\lvert T \rvert \ge 10$. The introduction states the full condition of Proposition 4 and lists the congruence only among the known results. `verify.py` tests each correction. |
+
 ## License
 
 | Material | License |

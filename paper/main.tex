@@ -54,7 +54,7 @@
   $\text{\normalfont\small Independent researcher, Helsinki, Finland}$\\
   $\text{\normalfont\small\texttt{math@valjastus.fi}}$\\
   $\text{\normalfont\small ORCID \href{https://orcid.org/0009-0004-3968-7732}{0009-0004-3968-7732}}$}
-\date{19 November 2026. DOI \href{https://doi.org/10.5281/zenodo.24355350}{10.5281/zenodo.24355350}}
+\date{19 November 2026, version 1.1. DOI \href{https://doi.org/10.5281/zenodo.24367098}{10.5281/zenodo.24367098}}
 \subjclass[2020]{Primary 11A63; Secondary 11A07, 11B39}
 \keywords{repeating decimals, geometric series, carries, $10$-adic integers,
 parasitic numbers, Fibonacci numbers}
@@ -75,7 +75,7 @@ $-1/n$ in the $10$-adic integers. For $1/7$, $1/19$, $1/49$ and other
 denominators this $10$-adic series and the real series for $1/n$ are the two
 tails of one progression $bT^k$, $k \in \Z$, where $T = 10^x c$ is the ratio of
 the backward series, for example $T = 20$ for $1/19$. We also prove that for
-every fraction $k/(10c-1)$ with $1 \le k \le 9$, moving the last digit of the
+every fraction $k/(10c-1)$ with a positive integer $c$ and $1 \le k \le 9$, $k < 10c - 1$, moving the last digit of the
 period to the front multiplies the period by $c$, and we read the denominators of both series from a linear recurrence of any
 order, with the Fibonacci examples $1/89$ and $1/109$ as the first case. The article grew out of the author's 2015 Mathematics Stack Exchange
 question~\cite{mse1365506}.
@@ -120,15 +120,15 @@ For $n > 10^x/2$ the quotient of $10^x$ by $n$ is $m = 1$ and the remainder is $
 Each of these patterns has partial precedents. The Vedic rule \emph{Ekādhikena Pūrvena} generates $1/19$ by doubling
 from the right~\cite{tadepalli}. Parasitic (Dyson) numbers such as
 $105263157894736842$, which doubles when its last digit is moved to the front,
-arise as the periods of fractions $k/(10c-1)$ with a positive integer $c$ and a digit $k$ from $1$ to $9$~\cite{wiki-parasitic,mathpages859}, and Proposition~\ref{prop:parasitic} proves this property. The Fibonacci Quarterly treated $1/89$
+arise as the periods of fractions $k/(10c-1)$ with a positive integer $c$ and a digit $k$ from $1$ to $9$ such that $k < 10c - 1$~\cite{wiki-parasitic,mathpages859}, and Proposition~\ref{prop:parasitic} proves this property. The Fibonacci Quarterly treated $1/89$
 and $1/109$~\cite{long1981,bicknell1989}, and generating functions produce
 fractions with prescribed digit sequences~\cite{munafo}. 
 
 Several results below are known in substance. The geometric series \eqref{eq:forward} for the forward patterns, and its extension to other recurrences through generating functions, the real series in \eqref{eq:recseries}, appear in Long~\cite{long1981}, Hudson and Winans~\cite{hudson1981}, K\"ohler~\cite{kohler1985} and Hudson~\cite{hudson1987}. Bicknell-Johnson~\cite{bicknell1989}
-writes the period read from the right as a series whose multiplier is the inverse $c$ of $10^x$ modulo $n$ and whose first term is the number $b$ formed by the last $x$ digits of the period. This statement is the congruence \eqref{eq:congruence} together with Remark~\ref{rem:start}. That $-1/n$ is the period repeated to the
+writes the period read from the right as a series whose multiplier is the inverse $c$ of $10^x$ modulo $n$ and whose first term, for $x \le L$, is the number $b$ formed by the last $x$ digits of the period. This statement is the congruence \eqref{eq:congruence} together with Remark~\ref{rem:start}. That $-1/n$ is the period repeated to the
 left in the $p$-adic integers is standard~\cite{conrad,carlschmitz}, and so is the
 rotation property of parasitic numbers~\cite{wiki-parasitic,grinberg}. To the
-author's knowledge the following are new. Theorem~\ref{thm:forward} gives every printed block exactly, carries included, and for $r \ge 2$ the paragraph after its proof derives from it the number of terms printed unchanged before the first carry. The first equality of \eqref{eq:backward} in Theorem~\ref{thm:backward} identifies the series read from the right as a $10$-adic geometric series with sum $-1/n$, and the congruence \eqref{eq:congruence} that follows from it is the one credited to Bicknell-Johnson above. Proposition~\ref{prop:T} gives a sufficient condition under which this series and the real series for $1/n$ are the two tails of one progression $bT^k$, $k \in \Z$, namely that $T$ is a multiple of $10$ with $n \mid T - 1$ and $b = (T-1)/n$. Remark~\ref{rem:dual} states that the forward multiplier for blocks of length $x$ is the backward multiplier for blocks of length $L - x$, where $L$ is the length of the period. Bicknell-Johnson notes that her multipliers are the long-division remainders in reverse order, which contains this relation implicitly. Section~\ref{sec:recurrences} states the $10$-adic series in \eqref{eq:recseries} for a linear recurrence of arbitrary order, with the denominator read from the recurrence, and Bicknell-Johnson's examples of Fibonacci and tribonacci type are special cases of it. Section~\ref{sec:classroom} gives four exercises that use these results.
+author's knowledge the following are new. Theorem~\ref{thm:forward} gives every printed block exactly, carries included, and for $r \ge 2$ the paragraph after its proof derives from it the number of terms printed unchanged before the first carry. The first equality of \eqref{eq:backward} in Theorem~\ref{thm:backward} identifies the series read from the right as a $10$-adic geometric series with sum $-1/n$. Proposition~\ref{prop:T} gives a sufficient condition under which this series and the forward series of Theorem~\ref{thm:forward} are the two tails of one progression $bT^k$, $k \in \Z$. The condition is that $n \mid T - 1$ and $b = (T-1)/n$, that $T = 10^x c$ and $rT = 10^{x'}$ with positive integers $x$, $x'$, $c$ and $r$, and that $c < n$ and $r < n$. Remark~\ref{rem:dual} states that the forward multiplier for blocks of length $x$ is the backward multiplier for blocks of length $L - x$, where $L$ is the length of the period. Bicknell-Johnson notes that her multipliers are the long-division remainders in reverse order, which contains this relation implicitly. Section~\ref{sec:recurrences} states the $10$-adic series in \eqref{eq:recseries} for a linear recurrence of arbitrary order, with the denominator read from the recurrence, and Bicknell-Johnson's examples of Fibonacci and tribonacci type are special cases of it. Section~\ref{sec:classroom} gives four exercises that use these results.
 
 \subsection*{Notation}
 Throughout, $n > 1$ is coprime to $10$, $L = \ord_n(10)$ is the period
@@ -186,16 +186,17 @@ $n = 83$ and $x = 3$ we have $m = 12$ and $r = 4$, and the fourth block is
 $768 + \lfloor 256/83 \rfloor = 771$, as in $1/83 = 0.012\,048\,192\,771\dots$.
 \end{example}
 
-We call $r$, the least positive residue of $10^x$ modulo $n$, the forward multiplier. Because $m \ge 1$, the terms $m r^k$ double exactly when $r = 2$. Since $r$ is the residue of $10^x$ in the range from $1$ to $n - 1$ and $n \ge 3$, this happens exactly when $n \mid 10^x - 2$. For a given $n$ the block lengths $x$ with
+We call $r$, the least positive residue of $10^x$ modulo $n$, the forward multiplier. Under the hypothesis $n < 10^x$ of Theorem~\ref{thm:forward} we have $m \ge 1$, so the terms $m r^k$ double exactly when $r = 2$. Since $r$ is the residue of $10^x$ in the range from $1$ to $n - 1$ and $n \ge 3$, this happens exactly when $n \mid 10^x - 2$. For a given $n$ the block lengths $x$ with
 $10^x \equiv 2 \pmod n$ form a single residue class modulo $L$, or there are
 none when $2$ is not a power of $10$ modulo $n$. For instance $1/7$ doubles
-forward for $x \equiv 2 \pmod 6$. The numbers $10^x - 2$ for $x = 2, 3, 4, 6$
+forward for $x \equiv 2 \pmod 6$. The numbers $10^x - 2$ for $x = 2, \dots, 6$
 factor as
 \[
 98 = 2\cdot 7^2,\quad 998 = 2\cdot 499,\quad 9998 = 2\cdot 4999,\quad
+99998 = 2\cdot 49999,\quad
 999998 = 2\cdot 31\cdot 127^2 ,
 \]
-and their odd divisors greater than $1$ are the denominators with forward doubling for that $x$, for example $7$ and $49$ for $x = 2$. The value $x = 5$ is left out of the list because $10^5 - 2 = 2\cdot 49999$ with $49999$ prime, so $49999$ is the only denominator with forward doubling for $x = 5$.
+and their odd divisors greater than $1$ are the denominators with forward doubling for that $x$, for example $7$ and $49$ for $x = 2$. The numbers $499$, $4999$ and $49999$ are prime, so for $x = 3, 4, 5$ each of them is the only denominator with forward doubling.
 
 %======================================================================
 \section{Backward patterns}
@@ -223,7 +224,7 @@ P \equiv b \sum_{k=0}^{K-1} c^k\, 10^{xk} \pmod{10^L}.
 
 In words, the period $P$ written with $L$ digits is the sum of the terms
 $b, bc, bc^2, \dots$, where the term $bc^k$ is shifted $kx$ places to the left,
-with carries and with everything beyond the last $L$ digits cut off. It is enough to take $K = \lceil L/x \rceil$ terms. Theorem~1 of Bicknell-Johnson~\cite{bicknell1989} is this congruence in other notation. Her multiplier is the number $c$, and her last block is the number $b$ formed by the last $x$ digits of the period, as in Remark~\ref{rem:start} below.
+with carries and with everything beyond the last $L$ digits cut off. It is enough to take $K = \lceil L/x \rceil$ terms. Theorem~1 of Bicknell-Johnson~\cite{bicknell1989} is this congruence in other notation. Her multiplier is the number $c$, and for $x \le L$ her last block is the number $b$ formed by the last $x$ digits of the period, as in Remark~\ref{rem:start} below.
 
 \begin{proof}
 Put $Y = 10^x c$. In $\Ztena$ the series $\sum_k Y^k$ converges, and
@@ -232,13 +233,17 @@ $\Ztena$, which makes $b$ and $n$ units of $\Ztena$ as well. So $\sum_{k\ge0} Y^
 \begin{equation}\label{eq:periodadic}
 \frac1n = \frac{P}{10^L - 1} = -P\sum_{j\ge0} 10^{Lj},
 \end{equation}
-so $-1/n = \dots PPP$. Reducing the two expansions \eqref{eq:backward} and \eqref{eq:periodadic} of $-1/n$ modulo $10^L$ gives the congruence \eqref{eq:congruence}, because every term with $k \ge K$ has $xk \ge xK \ge L$ and is therefore divisible by $10^L$.
+so $-1/n = \dots PPP$. The first equality of \eqref{eq:backward} and the negative of \eqref{eq:periodadic} are two expansions of $-1/n$, and reducing both modulo $10^L$ gives the congruence \eqref{eq:congruence}, because every term with $k \ge K$ has $xk \ge xK \ge L$ and is therefore divisible by $10^L$.
 \end{proof}
 
-The congruence also has a proof without $10$-adic numbers. With
-$S = \sum_{k<K} Y^k$ we have $nbS = Y^K - 1$ and $nP = 10^L - 1$, so
-$n(bS - P) = Y^K - 10^L$ is divisible by $10^L$, and $n$ is invertible modulo
-$10^L$.
+The congruence also has a proof without $10$-adic numbers. Put again
+$Y = 10^x c$, so that $Y - 1 = bn$ by \eqref{eq:b}, and let $S = \sum_{k<K} Y^k$.
+Then $nbS = (Y - 1)S = Y^K - 1$ and $nP = 10^L - 1$, so
+$n(bS - P) = Y^K - 10^L$. When $xK \ge L$, the power $Y^K = 10^{xK} c^K$ is
+divisible by $10^L$, and so is $n(bS - P)$. Since $n$ is invertible modulo
+$10^L$, it follows that $bS \equiv P \pmod{10^L}$, which is \eqref{eq:congruence}.
+The condition $xK \ge L$ is needed. For $n = 7$, $x = 2$ and $K = 2$ we have
+$Y = 200$ and $Y^2 - 10^6 = -840000$, which $10^6$ does not divide.
 
 \begin{remark}[Where the backward sequence starts]\label{rem:start}
 Let $x \le L$. Since $nP = 10^L - 1 \equiv -1$ and, by \eqref{eq:b}, $nb = 10^x c - 1 \equiv -1$
@@ -255,7 +260,7 @@ with Euler's theorem, and by a shift identity~\cite{codidact278629}.
 Moving the last digit of a parasitic number to the front multiplies the number by a fixed integer, and this rotation property is standard~\cite{wiki-parasitic,grinberg}. The next proposition states it for the repeating digits of $k/(10c-1)$ in the notation of this article.
 
 \begin{proposition}[Parasitic numbers]\label{prop:parasitic}
-Let $n = 10c - 1$ and $1 \le k \le 9$, and let $Q = k(10^L - 1)/n$ be the $L$ digits that repeat in the expansion of $k/n$, written with leading zeros if needed. For $\gcd(k, n) > 1$ these digits are the shorter period of $k/n$ repeated. Then $Q$ ends in the digit $k$,
+Let $n = 10c - 1$ with a positive integer $c$, let $1 \le k \le 9$ with $k < n$, and let $Q = k(10^L - 1)/n$ be the $L$ digits that repeat in the expansion of $k/n$, written with leading zeros if needed. When the period of $k/n$ is shorter than $L$, these digits are that period repeated. Then $Q$ ends in the digit $k$,
 and moving that digit to the front multiplies $Q$ by $c$.
 \end{proposition}
 
@@ -269,11 +274,12 @@ $10cQ = (n+1)Q = k(10^L - 1) + Q = 10Q'$, we get $cQ = Q'$.
 For $n = 19 = 10\cdot 2 - 1$ and $k = 7$ this gives $Q = 368421052631578947$, and moving its last digit $7$ to the front gives $736842105263157894 = 2Q$. For $k = 2$ the same $n$ gives $Q = 105263157894736842$ and $2Q = 210526315789473684$.
 
 \begin{remark}[Forward and backward multipliers]\label{rem:dual}
+Let $1 \le x < L$, so that $L - x$ is also a block length of at least $1$.
 For the same $x$ the multipliers $r \equiv 10^x$ and $c \equiv 10^{-x}$ are
 inverse to each other modulo $n$ by definition. Since $10^L \equiv 1 \pmod n$,
 the backward multiplier for blocks of length $L - x$ is
 $10^{x - L} \equiv 10^x$, which is the forward multiplier for blocks of
-length $x$. For $1 \le x < L$ the multiplier of every forward pattern in blocks of length $x$ is therefore also the multiplier of a backward pattern in blocks of length $L - x$. The first terms are $m$ in the forward series and $b$ in the backward series, and they are in general different, as for $1/7$, where $m = 14$ for $x = 2$ and $b = 2857$ for $x = 4$. Backward
+length $x$. When also $n < 10^x$, so that Theorem~\ref{thm:forward} applies, the multiplier of every forward pattern in blocks of length $x$ is therefore also the multiplier of a backward pattern in blocks of length $L - x$. The first terms are $m$ in the forward series and $b$ in the backward series, and they are in general different, as for $1/7$, where $m = 14$ for $x = 2$ and $b = 2857$ for $x = 4$. Backward
 doubling means $c = 2$, that is $n \mid 2\cdot 10^x - 1$. For
 $x = 1, \dots, 6$ these numbers are
 \[
@@ -302,7 +308,7 @@ Suppose in addition that $T = 10^x c$ and $rT = 10^{x'}$ with positive integers 
 \end{proposition}
 
 \begin{proof}
-In $\mathbb{R}$ the sum $\sum_{k\ge1} T^{-k}$ is $1/(T-1) = 1/(nb)$. In
+The integer $T$ is not $0$, because $T = 0$ would make $n$ a divisor of $-1$, and $n > 1$. So $|T| \ge 10$, and in $\mathbb{R}$ the geometric series $\sum_{k\ge1} T^{-k}$ converges to $1/(T-1) = 1/(nb)$. In
 $\Ztena$ the powers $T^k$ tend to $0$, and $1 - T = -nb$ is congruent to $1$
 modulo $10$ and is a unit, so $\sum_{k\ge0} T^k = -1/(nb)$. Multiplying by $b$
 gives both series. Next, $r\,nb = r(T - 1) = 10^{x'} - r$, so $10^{x'} = (rb)\,n + r$ with $0 < r < n$, and $m = rb \ge 1$, which also gives $n < 10^{x'}$ because $10^{x'} = mn + r > mn \ge n$. The terms

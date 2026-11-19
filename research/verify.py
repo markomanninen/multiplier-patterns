@@ -418,4 +418,94 @@ check("Pell: N = 79 and N' = 119 for x = 1", 100 - 20 - 1 == 79 and 100 + 20 - 1
 check("1/79 = 0.0126582...", str(10**7 // 79).zfill(7) == "0126582")
 check("1/119 period ends ...302521", str((10**48 - 1) // 119).endswith("302521") and pow(10, 48, 119) == 1)
 
+# ======================================================================
+# Corrections in version 1.1 of the article, 19 November 2026.
+# Each check confirms the fault in the first version and the corrected
+# statement that replaces it.
+# ======================================================================
+
+# Item 1, a common factor of k and n does not always shorten the period
+L39 = order(10, 39)
+check("1: gcd(3, 39) > 1 but 3/39 = 1/13 keeps period 6 = ord_39(10)",
+      L39 == 6 and order(10, 13) == 6 and str(3 * (10**6 - 1) // 39).zfill(6) == "076923")
+check("1: gcd(9, 99) > 1 but 9/99 = 1/11 keeps period 2 = ord_99(10)",
+      order(10, 99) == 2 and order(10, 11) == 2)
+ok = True
+for c in range(1, 61):
+    n = 10 * c - 1
+    Ln = order(10, n)
+    for k in range(1, min(9, n - 1) + 1):
+        d = n // gcd(k, n)
+        Ld = order(10, d) if d > 1 else 1
+        Q = str(k * (10**Ln - 1) // n).zfill(Ln)
+        per = str((k // gcd(k, n)) * (10**Ld - 1) // d).zfill(Ld)
+        ok &= Ln % Ld == 0 and Q == per * (Ln // Ld)
+check("1: Q is the period of k/n repeated L/(its length) times, c = 1..60", ok)
+
+# Item 2, c = 1 and k = 9 give k/n = 1, so the statement needs k < n
+check("2: c = 1, k = 9 gives n = 9 and k/n = 1, with Q = 9 = 10^L - 1",
+      order(10, 9) == 1 and 9 * (10**1 - 1) // 9 == 9 == 10**1 - 1)
+ok = True
+for c in range(1, 61):
+    n = 10 * c - 1
+    Ln = order(10, n)
+    for k in range(1, 10):
+        if k < n:
+            Q = k * (10**Ln - 1) // n
+            ok &= Q < 10**Ln - 1 and Fraction(Q, 10**Ln - 1) == Fraction(k, n)
+check("2: for k < n, Q < 10^L - 1 is the repeating part of k/n < 1", ok)
+
+# Item 3, b is the last x digits of the period only for x <= L
+b77 = (10**7 * pow(10, -7, 7) - 1) // 7
+check("3: n = 7, x = 7 gives b = 7142857 with 7 digits, P has 6", b77 == 7142857 and b77 >= 10**6)
+ok = all(((10**x * pow(10, -x, n) - 1) // n >= 10**order(10, n)) or x <= order(10, n)
+         for n in DENOMS[:80] for x in range(1, 12))
+check("3: b < 10^L can fail only when x > L", ok)
+
+# Item 4, the direct proof needs xK >= L
+Y = 10**2 * pow(10, -2, 7)
+check("4: n = 7, x = 2, K = 2 gives Y^2 - 10^6 = -840000, not divisible by 10^6",
+      Y**2 - 10**6 == -840000 and (Y**2 - 10**6) % 10**6 != 0)
+ok = True
+for n in DENOMS[:120]:
+    Ln = order(10, n)
+    P = (10**Ln - 1) // n
+    for x in range(1, 6):
+        c = pow(10, -x, n)
+        b = (10**x * c - 1) // n
+        Y = 10**x * c
+        for K in range(1, Ln + 2):
+            S = sum(Y**k for k in range(K))
+            ok &= n * (b * S - P) == Y**K - 10**Ln
+            if x * K >= Ln:
+                ok &= (Y**K - 10**Ln) % 10**Ln == 0 and (b * S - P) % 10**Ln == 0
+check("4: n(bS - P) = Y^K - 10^L, divisible by 10^L when xK >= L", ok)
+
+# Item 5 and 6, the forward pattern needs n < 10^x, which is what gives m >= 1
+m97, r97 = divmod(10, 97)
+check("5: n = 97, x = 1 satisfies 1 <= x < L but m = 0, so no forward series",
+      1 < order(10, 97) and m97 == 0)
+ok = all((divmod(10**x, n)[0] >= 1) == (n < 10**x) for n in DENOMS for x in range(1, 5))
+check("6: m >= 1 exactly when n < 10^x", ok)
+
+# Item 7, x = 5 is like x = 3 and x = 4, one prime odd divisor
+def is_prime(p):
+    return p > 1 and all(p % q for q in range(2, int(p**0.5) + 1))
+check("7: 499, 4999 and 49999 are all prime", all(map(is_prime, (499, 4999, 49999))))
+check("7: 99998 = 2 * 49999", 10**5 - 2 == 99998 == 2 * 49999)
+odd = {x: [d for d in range(3, 10**x - 1, 2) if (10**x - 2) % d == 0] for x in (2, 3, 4, 5)}
+check("7: odd divisors > 1 of 10^x - 2 are {7, 49}, {499}, {4999}, {49999}",
+      odd == {2: [7, 49], 3: [499], 4: [4999], 5: [49999]})
+
+# Item 9, in Prop 4 the condition n > 1, n | T - 1 rules out T = 0, so |T| >= 10
+check("9: T = 0 would need n | -1, impossible for n > 1", all((0 - 1) % n for n in range(2, 50)))
+ok = True
+for T in range(-5000, 5001, 10):
+    for n in range(2, abs(T - 1) + 1):
+        if (T - 1) % n:
+            continue
+        b = (T - 1) // n
+        ok &= T != 0 and abs(T) >= 10 and Fraction(b, T - 1) == Fraction(1, n)
+check("9: |T| >= 10 and the real sum b/(T - 1) = 1/n, also for negative T", ok)
+
 print("\nAll checks passed.")
